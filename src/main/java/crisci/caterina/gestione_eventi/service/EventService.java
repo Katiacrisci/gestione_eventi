@@ -31,6 +31,9 @@ public class EventService {
     public Event create(EventDTO eventDTO) {
         return eventRepository.save(Event.fromDTO(eventDTO));
     }
+    public Event getById(Long id) {
+        return eventRepository.findById(id).orElseThrow();
+    }
 
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
@@ -46,7 +49,8 @@ public class EventService {
         return eventRepository.save(event);
     }
 
-    public Event addParticipant(Long userId, Event event) {
+    public Event addParticipant(Long userId, Long eventId) {
+        Event event = getById(eventId);
         if (event.getCapacity().equals(event.getAttendees().size())) {
             return null;
         }
