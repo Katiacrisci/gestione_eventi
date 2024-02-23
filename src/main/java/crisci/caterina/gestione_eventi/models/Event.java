@@ -1,5 +1,6 @@
 package crisci.caterina.gestione_eventi.models;
 
+import crisci.caterina.gestione_eventi.DTO.EventDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,4 +23,13 @@ public class Event {
     private List<User> attendees;
     private Integer capacity;
 
+    public static Event fromDTO(EventDTO eventDTO) {
+        Event event = new Event();
+        event.title = eventDTO.title();
+        event.place = eventDTO.place();
+        event.date = eventDTO.date();
+        event.capacity = eventDTO.capacity();
+
+        return event;
+    }
 }

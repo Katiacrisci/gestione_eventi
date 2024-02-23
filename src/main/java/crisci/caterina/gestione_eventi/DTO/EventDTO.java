@@ -1,4 +1,9 @@
 package crisci.caterina.gestione_eventi.DTO;
 
-public record EventDTO() {
+import java.time.LocalDate;
+
+public record EventDTO(LocalDate date, String title,
+                       String place, Integer capacity) {
+
+
 }
